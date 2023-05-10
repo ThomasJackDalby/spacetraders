@@ -96,4 +96,22 @@ def mining():
             dock_ship(ship_drone)
             refuel_ship(ship_drone)
 
-print(get_waypoint(system_home, waypoint_hq))
+# print(get_waypoint(system_home, waypoint_asteroid_field))
+
+# print(get_ships())
+
+# print(get_waypoint_shipyard(system_home, "X1-DF55-69207D"))
+
+# print(buy_ship("X1-DF55-69207D", "SHIP_PROBE"))
+
+
+def ship_summary():
+
+    ships = get_ships()
+
+    data = [[ship["symbol"], ship["nav"]["waypointSymbol"]] for ship in ships]
+
+    print(tabulate.tabulate(data, headers=["Symbol", "Location"]))
+
+
+ship_summary()
