@@ -183,4 +183,4 @@ def mining():
             dock_ship(ship_drone)
             refuel_ship(ship_drone)
 
-print(get_status())
+print(get_waypoint(system_home, waypoint_hq))

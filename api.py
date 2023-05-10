@@ -54,3 +54,84 @@ def post(url, json=None):
     elif "error" in response_data:
         print(response_data["error"])
         return None
+    
+def get_status():
+    return get("https://api.spacetraders.io/v2/my/agent")
+
+def get_systems():
+    return get("https://api.spacetraders.io/v2/systems")
+
+def get_system(system_symbol):
+    return get(f"https://api.spacetraders.io/v2/systems/{system_symbol}")
+
+def get_waypoints(system_symbol = "X1-DF55"):
+    return get(f"https://api.spacetraders.io/v2/systems/{system_symbol}/waypoints/")
+
+def get_waypoint(system_symbol, waypoint_symbol):
+    return get(f"https://api.spacetraders.io/v2/systems/{system_symbol}/waypoints/{waypoint_symbol}")
+
+def get_waypoint_market(system_symbol, waypoint_symbol):
+    return get(f"https://api.spacetraders.io/v2/systems/{system_symbol}/waypoints/{waypoint_symbol}/market")
+
+def get_waypoint_shipyard(system_symbol, waypoint_symbol):
+    return get(f"https://api.spacetraders.io/v2/systems/{system_symbol}/waypoints/{waypoint_symbol}/shipyard")
+
+def get_contracts():
+    return get("https://api.spacetraders.io/v2/my/contracts")
+
+def get_ships():
+    return get("https://api.spacetraders.io/v2/my/ships")
+
+def get_ship(ship_symbol):
+    return get(f"https://api.spacetraders.io/v2/my/ships/{ship_symbol}")
+
+# actions
+def buy_ship(waypoint_symbol = "X1-DF55-69207D", ship_type = "SHIP_MINING_DRONE"):
+    return post("https://api.spacetraders.io/v2/my/ships", {
+        "shipType" : ship_type,
+        "waypointSymbol" : waypoint_symbol
+    })
+
+def accept_contract(contract_id = "clhevkj395bacs60dsky9qf5q"):
+    return get(f"https://api.spacetraders.io/v2/my/contracts/{contract_id}/accept")
+
+# commands
+def navigate_to(ship_symbol, waypoint_symbol):
+    print(f"NAVIGATE [{ship_symbol}] to [{waypoint_symbol}]")
+    return post(f"https://api.spacetraders.io/v2/my/ships/{ship_symbol}/navigate", {
+        "waypointSymbol" : waypoint_symbol
+    })
+
+def dock_ship(ship_symbol):
+    print(f"DOCK [{ship_symbol}]")
+    return post(f"https://api.spacetraders.io/v2/my/ships/{ship_symbol}/dock")
+
+def orbit_ship(ship_symbol):
+    print(f"ORBIT [{ship_symbol}]")
+    return post(f"https://api.spacetraders.io/v2/my/ships/{ship_symbol}/orbit")
+
+def refuel_ship(ship_symbol):
+    print(f"REFUEL [{ship_symbol}]")
+    return post(f"https://api.spacetraders.io/v2/my/ships/{ship_symbol}/refuel")
+
+def extract_ship(ship_symbol):
+    print(f"EXTRACT [{ship_symbol}]")
+    return post(f"https://api.spacetraders.io/v2/my/ships/{ship_symbol}/extract")
+
+def deliver_ship(contract_id, ship_symbol, resource_symbol, amount):
+    print(f"DELIVER [{ship_symbol}] [{resource_symbol}] (x{amount}) against [{contract_id}]")
+    return post(f"https://api.spacetraders.io/v2/my/contracts/{contract_id}/deliver", {
+        "shipSymbol" : ship_symbol, 
+        "tradeSymbol" : resource_symbol,
+        "units": amount
+    })
+
+# info
+def get_ship_cooldown(ship_symbol):
+    return get(f"https://api.spacetraders.io/v2/my/ships/{ship_symbol}/cooldown")
+
+def get_ship_cargo(ship_symbol):
+    return get(f"https://api.spacetraders.io/v2/my/ships/{ship_symbol}/cargo")
+
+def get_ship_nav(ship_symbol):
+    return get(f"https://api.spacetraders.io/v2/my/ships/{ship_symbol}/nav")
