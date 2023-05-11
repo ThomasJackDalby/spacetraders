@@ -40,6 +40,7 @@ waypoint_hq = "X1-DF55-20250Z"
 waypoint_asteroid_field = "X1-DF55-17335A"
 ship_command = "DALBINGTON-1"
 ship_drone = "DALBINGTON-2"
+ship_probe = "DALBINGTON-3"
 
 # dock_ship(ship_drone)
 # ship_sell(ship_drone, "SILVER_ORE", 7)
@@ -97,21 +98,26 @@ def mining():
             refuel_ship(ship_drone)
 
 # print(get_waypoint(system_home, waypoint_asteroid_field))
-
 # print(get_ships())
-
 # print(get_waypoint_shipyard(system_home, "X1-DF55-69207D"))
-
 # print(buy_ship("X1-DF55-69207D", "SHIP_PROBE"))
-
 
 def ship_summary():
 
     ships = get_ships()
 
-    data = [[ship["symbol"], ship["nav"]["waypointSymbol"]] for ship in ships]
+    data = [[
+        ship["symbol"],
+        ship["frame"]["symbol"],
+        ship["nav"]["waypointSymbol"],
+        f'{ship["fuel"]["current"]}/{ship["fuel"]["capacity"]}',
+    ] for ship in ships]
 
-    print(tabulate.tabulate(data, headers=["Symbol", "Location"]))
+    print(tabulate.tabulate(data, headers=["Symbol", "Type", "Location", "Fuel"]))
+
+# ship_summary()
+# navigate_to(ship_probe, waypoint_hq)
+# print(get_ship(ship_probe))
 
 
-ship_summary()
+print(get_systems())

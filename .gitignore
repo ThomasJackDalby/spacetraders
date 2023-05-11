@@ -1,3 +1,7 @@
 # python files
 __pycache__
 *.pyc
+
+
+# secrets
+token.js

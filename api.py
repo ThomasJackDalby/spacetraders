@@ -126,6 +126,13 @@ def deliver_ship(contract_id, ship_symbol, resource_symbol, amount):
         "units": amount
     })
 
+def transfer_cargo(ship_symbol, target_ship_symbol, item_symbol, amount):
+    return post(f"https://api.spacetraders.io/v2/my/ships/{ship_symbol}/transfer", {
+        "tradeSymbol": item_symbol,
+        "ship_symbol": target_ship_symbol,
+        "units": amount,
+    })
+
 # info
 def get_ship_cooldown(ship_symbol):
     return get(f"https://api.spacetraders.io/v2/my/ships/{ship_symbol}/cooldown")
