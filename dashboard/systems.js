@@ -6,7 +6,7 @@ async function getData() {
         const response = await fetch(url, {
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZGVudGlmaWVyIjoiREFMQklOR1RPTiIsImlhdCI6MTY4MzU1MjI5OCwic3ViIjoiYWdlbnQtdG9rZW4ifQ.BAn4_PBMzQCzkeeRc0hLeHBiR0xeH6YQIBB3AbKiNLD_CoX0_apyr6c_UCcyEZnTThzfDPvLr1NoenoO2Lic8LD6utploWocuQ8CnYOx7WvU_BU36G0FECxhBOcnf9wpTbCO0GBtPwVuIjor5bKQ8TKnQrjG3gSsGAYOw5N3NERzpFqRxSD_myXzoGXjkhkJ6PkqkfYyJK47-j0VHIqduU-yJsdclFhSvfHdzshYqlvc1mrhtRdy6aSlcnFJU2x71s_z16hiNZzszXmXOf7rmo3LjtTKSLo-jj86vB2Gow_ou6-UL5mbEaIl1m1iIK3Juzi0_FrJKoN1fvEzsUWMDl3z77frPzrnsJxpflNscGB2-5h1OQ1yUqjbN76uYNXri-YBOtq9XbzNabzc5O1Qn2JE09ZieVEc9BxrGjAXtkv1mSeB_BYxj_zXC2QMmBOprdGfp3ZiKd_1jWWJnuXUp7OF_8xtnKHl5IZjPHbJqtDP7zf7S-D6YqxbC0RjnXd3"
+                "Authorization": "Bearer "+TOKEN
             }
         });
         console.log(response.statusText);
