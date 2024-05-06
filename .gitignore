@@ -1,7 +1,13 @@
-# python files
-__pycache__
-*.pyc
+# editor
+.vscode/
 
+# python files
+__pycache__/
+*.pyc
 
 # secrets
 token.js
+
+# cached data
+.archive/
+.cache/

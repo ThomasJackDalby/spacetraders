@@ -1,7 +1,6 @@
 // const system_id = "X1-DF55"
 const system_id = "X1-AU69"
 
-
 let response_data = null;
 
 var groupBy = function (xs, key) {
@@ -13,17 +12,17 @@ var groupBy = function (xs, key) {
 
 async function setup() {
     createCanvas(1000, 1000);
-    const response = await fetch("https://api.spacetraders.io/v2/systems/" + system_id, {
-        headers: {
-            "Content-Type": "application/json",
-            "Authorization": "Bearer "+TOKEN
-        }
-    });
-    response_data = await response.json();
-    console.log(response_data)
+    // const response = await fetch("https://api.spacetraders.io/v2/systems/" + system_id, {
+    //     headers: {
+    //         "Content-Type": "application/json",
+    //         "Authorization": "Bearer "+TOKEN
+    //     }
+    // });
+    // response_data = await response.json();
+    // console.log(response_data)
 }
 
-function draw_waypoint(waypoint, x, y) {
+function drawWaypoint(waypoint, x, y) {
     stroke(255);
     line(x* scale, y * scale, x * scale + 8, y * scale+12)
     line(x * scale + 8, y * scale+12, x * scale + 80, y * scale+12)
@@ -84,7 +83,7 @@ function draw() {
         let groups = groupBy(response_data.data.waypoints, "location");
         for (let location in groups) {
             let group = groups[location];
-            draw_waypoint(group[0], group[0].x, group[0].y);
+            drawWaypoint(group[0], group[0].x, group[0].y);
             if (group.length > 1) {
                 noFill();
                 stroke(200);
@@ -95,7 +94,7 @@ function draw() {
                 for (let j = 1; j < group.length; j++) {
                     let x = group[0].x + radius * Math.cos(j * delta - (Math.PI / 2)) / scale;
                     let y = group[0].y + radius * Math.sin(j * delta - (Math.PI / 2)) / scale;
-                    draw_waypoint(group[j], x, y);
+                    drawWaypoint(group[j], x, y);
                 }
             }
         }
